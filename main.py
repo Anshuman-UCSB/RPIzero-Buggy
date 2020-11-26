@@ -1,5 +1,6 @@
 from driver import Driver
 from time import sleep
+import RPi.GPIO as GPIO
 
 
 try:

@@ -1,20 +1,29 @@
 from driver import Driver
 from time import sleep
 import RPi.GPIO as GPIO
-import keyboard
+from kbhit import KBHit
 
+buggy = Driver([17,27,22,23])
 try:
-    buggy = Driver([17,27,22,23])
+    kb = KBHit()
+
+    print('Hit any key, or ESC to exit')
     while True:
-        if keyboard.is_pressed('w'):
-            buggy.forward()
-        elif keyboard.is_pressed('s'):
-            buggy.backward()
-        elif keyboard.is_pressed('a'):
-            buggy.left()
-        elif keyboard.is_pressed('d'):
-            buggy.right()
-        else:
-            buggy.stop()
+        if kb.kbhit():
+            c = kb.getch()
+            if ord(c) == 119: # ESC
+                raise KeyboardInterrupt
+            if c == "w":
+                buggy.forward()
+            elif c == "s":
+                buggy.backward()
+            elif c == "a":
+                buggy.left()
+            elif c == "d":
+                buggy.right()
+            else:
+                buggy.stop()
+
+    kb.set_normal_term()
 except KeyboardInterrupt:
-    GPIO.cleanup()
+    buggy.kill()

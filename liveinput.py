@@ -11,7 +11,7 @@ try:
     while True:
         if kb.kbhit():
             c = kb.getch()
-            if ord(c) == 119: # ESC
+            if ord(c) == 27: # ESC
                 raise KeyboardInterrupt
             if c == "w":
                 buggy.forward()

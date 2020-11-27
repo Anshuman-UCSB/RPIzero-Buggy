@@ -27,13 +27,13 @@ class Driver():
         GPIO.output(self.pins[2],1) 
         GPIO.output(self.pins[3],0)
     
-    def left(self):
+    def right(self):
         GPIO.output(self.pins[0],1)
         GPIO.output(self.pins[1],0) 
         GPIO.output(self.pins[2],0) 
         GPIO.output(self.pins[3],1)
     
-    def right(self):
+    def left(self):
         GPIO.output(self.pins[0],0)
         GPIO.output(self.pins[1],1) 
         GPIO.output(self.pins[2],1) 

@@ -1,23 +1,20 @@
 from driver import Driver
-from keyboardMonitor import Keyboard
 from time import sleep
 import RPi.GPIO as GPIO
-
+import keyboard
 
 try:
     buggy = Driver([17,27,22,23])
-    kb = Keyboard()
-    while kb.live:
-        if kb.isPressed('w'):
+    while True:
+        if keyboard.is_pressed('w'):
             buggy.forward()
-        elif kb.isPressed('s'):
+        elif keyboard.is_pressed('s'):
             buggy.backward()
-        elif kb.isPressed('a'):
+        elif keyboard.is_pressed('a'):
             buggy.left()
-        elif kb.isPressed('d'):
+        elif keyboard.is_pressed('d'):
             buggy.right()
         else:
             buggy.stop()
-    buggy.kill()
 except KeyboardInterrupt:
     GPIO.cleanup()

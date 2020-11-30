@@ -21,7 +21,7 @@ stages = [
 ]
 
 delay = 0.0008
-
+dir = 1
 start = time()
 stage = 0
 print("starting drive")
@@ -32,7 +32,21 @@ while(time()-start < 5):
     GPIO.output(pins[2],state[2]) 
     GPIO.output(pins[3],state[3])
     sleep(delay)
-    stage+=1
+    stage += dir
+
+print("reversing")
+dir = -1
+start = time()
+while(time()-start < 5):
+    state = stages[stage%len(stages)]
+    GPIO.output(pins[0],state[0])
+    GPIO.output(pins[1],state[1]) 
+    GPIO.output(pins[2],state[2]) 
+    GPIO.output(pins[3],state[3])
+    sleep(delay)
+    stage += dir
+    
+
 
 print("Finishing drive")
 GPIO.cleanup()

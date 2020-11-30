@@ -20,6 +20,8 @@ stages = [
 [1,0,0,1]
 ]
 
+delay = 0.0008
+
 start = time()
 stage = 0
 print("starting drive")
@@ -29,7 +31,8 @@ while(time()-start < 5):
     GPIO.output(pins[1],state[1]) 
     GPIO.output(pins[2],state[2]) 
     GPIO.output(pins[3],state[3])
-    sleep(.8)
-    
+    sleep(delay)
+    stage+=1
+
 print("Finishing drive")
 GPIO.cleanup()
